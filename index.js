@@ -5,6 +5,11 @@
 var express = require('express');
 var app = express();
 
+//Function to check valid Date strings
+isValidDate = (dateString) => {
+  return !isNaN(new Date(dateString));
+};
+
 // enable CORS (https://en.wikipedia.org/wiki/Cross-origin_resource_sharing)
 // so that your API is remotely testable by FCC 
 var cors = require('cors');
