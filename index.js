@@ -30,16 +30,18 @@ app.get("/api/hello", function (req, res) {
 });
 
 app.get("/api/:date?", (req, res) => {
-  if( isValidDate(req.params.date) ) {
-    const parsedDate = new Date(req.params.date);
+  const inputDate = req.params.date;
+  
+  if( isValidDate(inputDate) ) {
+    const parsedDate = new Date(inputDate);
     const GMTString = parsedDate.toGMTString();
 
     const unix = Math.floor(parsedDate.getTime());
     // console.log(GMTString);
     // console.log(unix);
     res.json({unix: unix, utc: GMTString});
-  } else if (/^\d+$/.test(req.params.date) && req.params.date.length >= 13) {
-    const parsedDate = new Date(parseInt(req.params.date, 10));
+  } else if (/^\d+$/.test(inputDate) && inputDate.length >= 13) {
+    const parsedDate = new Date(parseInt(inputDate, 10));
     // console.log(parsedDate.toGMTString());
   }
 });
