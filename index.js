@@ -46,6 +46,8 @@ app.get("/api/:date?", (req, res) => {
     // console.log(parsedDate.toGMTString());
 
     res.json({unix: parseInt(inputDate), utc: GMTString});
+  } else {
+    res.json({error: "Invalid Date"});
   }
 });
 
