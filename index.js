@@ -38,6 +38,9 @@ app.get("/api/:date?", (req, res) => {
     // console.log(GMTString);
     // console.log(unix);
     res.json({unix: unix, utc: GMTString});
+  } else if (/^\d+$/.test(req.params.date) && req.params.date.length >= 13) {
+    const parsedDate = new Date(parseInt(req.params.date, 10));
+    // console.log(parsedDate.toGMTString());
   }
 });
 
