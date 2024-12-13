@@ -30,7 +30,11 @@ app.get("/api/hello", function (req, res) {
 });
 
 app.get("/api/:date?", (req, res, next) => {
-  
+  if( isValidDate(req.params.date) ) {
+    const parsedDate = new Date(req.params.date);
+    const GMTString = parsedDate.toGMTString();
+    //console.log(parsedDate);
+  }
 }, (req, res) => {
 
 });
