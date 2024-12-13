@@ -32,6 +32,12 @@ app.get("/api/hello", function (req, res) {
 app.get("/api/:date?", (req, res) => {
   const inputDate = req.params.date;
   
+  if (!inputDate) {
+    parsedDate = new Date();
+    const GMTString = parsedDate.toGMTString();
+    const unix = Math.floor(parsedDate.getTime());
+    res.json({unix: unix, utc: GMTString});
+  }
   if( isValidDate(inputDate) ) {
     const parsedDate = new Date(inputDate);
     const GMTString = parsedDate.toGMTString();
