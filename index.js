@@ -29,7 +29,7 @@ app.get("/api/hello", function (req, res) {
   res.json({greeting: 'hello API'});
 });
 
-app.get("/api/:date?", (req, res, next) => {
+app.get("/api/:date?", (req, res) => {
   if( isValidDate(req.params.date) ) {
     const parsedDate = new Date(req.params.date);
     const GMTString = parsedDate.toGMTString();
@@ -37,9 +37,8 @@ app.get("/api/:date?", (req, res, next) => {
     const unix = Math.floor(parsedDate.getTime());
     // console.log(GMTString);
     // console.log(unix);
+    res.json({unix: unix, utc: GMTString});
   }
-}, (req, res) => {
-
 });
 
 // Listen on port set in environment variable or default to 3000
